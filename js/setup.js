@@ -19,28 +19,20 @@ var getRandomElement = (list) => {
 	return list[Math.floor(Math.random() * list.length)];
 };
 
-var wizards = [
-	{
-		name: getRandomElement(names) + ' ' + getRandomElement(lastNames),
-		coatColor: getRandomElement(coatColors),
-		eyesColor: getRandomElement(eyesColors)
-	}, 
-	{
-		name: getRandomElement(names) + ' ' + getRandomElement(lastNames),
-		coatColor: getRandomElement(coatColors),
-		eyesColor: getRandomElement(eyesColors)
-	}, 
-	{
-		name: getRandomElement(names) + ' ' + getRandomElement(lastNames),
-		coatColor: getRandomElement(coatColors),
-		eyesColor: getRandomElement(eyesColors)
-	},
-	{
-		name: getRandomElement(names) + ' ' + getRandomElement(lastNames),
-		coatColor: getRandomElement(coatColors),
-		eyesColor: getRandomElement(eyesColors)
+var createWizards = (count) => {
+	var wizards = [];
+	for (var i = 0; i < count; i++) {
+		wizards.push ({
+			name: getRandomElement(names) + ' ' + getRandomElement(lastNames),
+			coatColor: getRandomElement(coatColors),
+			eyesColor: getRandomElement(eyesColors)
+		});
 	}
-];
+
+	return wizards;
+};
+
+var wizards = createWizards(4);
 
 var renderWizards = (template, wizard) => {
 	var templateClone = template.cloneNode(true);
@@ -52,15 +44,24 @@ var renderWizards = (template, wizard) => {
 	return templateClone;
 };
 
+var getWizardsElements = (elements) => {
 
-var fillAndPastFragment = (parentElement, elements) => {
-	var fragment = document.createDocumentFragment();
-
+	var wizards = [];
 	for (var i = 0; i < elements.length; i++) {
-		fragment.appendChild(renderWizards(similarWizardTemplate, elements[i]));
+		wizards.push(renderWizards(similarWizardTemplate, elements[i]));
 	}
-
-	parentElement.appendChild(fragment);
+	return wizards;
 };
 
-fillAndPastFragment(similarListElement, wizards);
+
+var renderFragment = (parentElement, elements) => {
+	var fragment = document.createDocumentFragment();
+
+	elements.forEach((element) => {
+		fragment.appendChild(element);
+	});
+
+	parentElement.appendChild(fragment);	
+};
+
+renderFragment(similarListElement, getWizardsElements(wizards));
