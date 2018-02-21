@@ -20,77 +20,27 @@ var getRandomElement = (list) => {
 };
 
 var getWizardElement = (count, template) => {
-	var wizardsProps = [];
 	var wizardsElements = [];
-	
 
 	for (var i = 0; i < count; i++) {
-		wizardsProps.push ({
-			name: getRandomElement(names) + ' ' + getRandomElement(lastNames),
-			coatColor: getRandomElement(coatColors),
-			eyesColor: getRandomElement(eyesColors)
-		});
 		var templateClone = template.cloneNode(true);
 
-		templateClone.querySelector('.setup-similar-label').textContent = wizardsProps[i].name;
-		templateClone.querySelector('.wizard-coat').style.fill = wizardsProps[i].coatColor;
-		templateClone.querySelector('.wizard-eyes').style.fill = wizardsProps[i].eyesColor;
+		templateClone.querySelector('.setup-similar-label').textContent =  getRandomElement(names) + ' ' + getRandomElement(lastNames);
+		templateClone.querySelector('.wizard-coat').style.fill = getRandomElement(coatColors);
+		templateClone.querySelector('.wizard-eyes').style.fill = getRandomElement(eyesColors);
 
 		wizardsElements.push(templateClone);
-		console.log(wizardsElements[i]);
 	}
 	
 	return wizardsElements;
 };
 
-//getWizardElement(4, similarWizardTemplate);
-
-// var createWizards = (count) => {
-// 	var wizards = [];
-// 	for (var i = 0; i < count; i++) {
-// 		wizards.push ({
-// 			name: getRandomElement(names) + ' ' + getRandomElement(lastNames),
-// 			coatColor: getRandomElement(coatColors),
-// 			eyesColor: getRandomElement(eyesColors)
-// 		});
-// 	}
-
-// 	return wizards;
-// };
-
-// var wizards = createWizards(4);
-
-// var customWizards = (template, wizard) => {
-// 	var templateClone = template.cloneNode(true);
-
-// 	templateClone.querySelector('.setup-similar-label').textContent = wizard.name;
-// 	templateClone.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-// 	templateClone.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
-// 	return templateClone;
-// };
-
-
-// var collectWizardsElements = (elements) => {
-
-// 	var wizards = [];
-// 	for (var i = 0; i < elements.length; i++) {
-// 		wizards.push(customWizards(similarWizardTemplate, elements[i]));
-// 	}
-// 	return wizards;
-// };
-
-
 var renderFragment = (parentElement, elements) => {
 	var fragment = document.createDocumentFragment();
-
 	elements.forEach((element) => {
 		fragment.appendChild(element);
 	});
-
 	parentElement.appendChild(fragment);	
 };
-
-//renderFragment(similarListElement, collectWizardsElements(wizards));
 
 renderFragment(similarListElement, getWizardElement(4,similarWizardTemplate));
