@@ -37,9 +37,7 @@ var getWizardElement = (count, template) => {
 
 var renderFragment = (parentElement, elements) => {
 	var fragment = document.createDocumentFragment();
-	elements.forEach((element) => {
-		fragment.appendChild(element);
-	});
+	elements.forEach((element) => fragment.appendChild(element));
 	parentElement.appendChild(fragment);	
 };
 
