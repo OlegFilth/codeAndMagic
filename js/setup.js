@@ -14,9 +14,6 @@ var showSetupBlock = (element) => {
 	element.classList.remove('hidden');
 };
 
-showSetupBlock(setupElement);
-showSetupBlock(setupSimilarList);
-
 var getRandomElement = (list) => {
 	return list[Math.floor(Math.random() * list.length)];
 };
@@ -46,4 +43,6 @@ var renderFragment = (parentElement, elements) => {
 	parentElement.appendChild(fragment);	
 };
 
+showSetupBlock(setupElement);
+showSetupBlock(setupSimilarList);
 renderFragment(similarListElement, getWizardElements(NUMBER_OF_WIZARDS));
