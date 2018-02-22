@@ -29,12 +29,7 @@ var getWizardElement = (template) => {
 };
 
 var getWizardElements = (count) => {
-	var wizardsElements = [];
-	for (var i = 0; i < count; i++) {
-		wizardsElements.push(getWizardElement(similarWizardTemplate));
-	}
-	
-	return wizardsElements;
+	return new Array(count).fill().map(() => getWizardElement(similarWizardTemplate));
 };
 
 var renderFragment = (parentElement, elements) => {
