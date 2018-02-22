@@ -48,4 +48,4 @@ var renderFragment = (parentElement, elements) => {
 	parentElement.appendChild(fragment);	
 };
 
-renderFragment(similarListElement, getWizardElements(NUMBER_OF_WIZARDS, getWizardElement(similarWizardTemplate)));
+renderFragment(similarListElement, getWizardElements(NUMBER_OF_WIZARDS));
